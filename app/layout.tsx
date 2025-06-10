@@ -34,9 +34,9 @@ export default function RootLayout({
       <head>
         {/* <GoogleAdSense /> */}
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col mx-auto max-w-none">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <div className="flex-1">{children}</div>
+          <div className="flex-1 w-full">{children}</div>
           <BlogFooter />
         </ThemeProvider>
       </body>

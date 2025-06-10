@@ -39,7 +39,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       return (
         <div className="min-h-screen bg-background">
           <BlogHeader />
-          <main className="container py-8">
+          <main className="container py-8 mx-auto">
             <Alert variant="destructive">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>指定されたページが見つかりません。</AlertDescription>
@@ -52,7 +52,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
     return (
       <div className="min-h-screen bg-background">
         <BlogHeader />
-        <main className="container py-8">
+        <main className="container py-8 mx-auto">
           {isUsingMockData && (
             <Alert className="mb-6">
               <AlertCircle className="h-4 w-4" />
@@ -121,7 +121,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
     return (
       <div className="min-h-screen bg-background">
         <BlogHeader />
-        <main className="container py-8">
+        <main className="container py-8 mx-auto">
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>

@@ -10,7 +10,7 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-background">
       <BlogHeader />
-      <main className="container py-8">
+      <main className="container py-8 mx-auto">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-8">プライバシーポリシー</h1>
 

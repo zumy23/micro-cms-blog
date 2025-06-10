@@ -47,7 +47,7 @@ export function BlogFooter() {
 
       <Separator />
 
-      <div className="container py-12">
+      <div className="container py-12 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* サイト情報 */}
           <div className="lg:col-span-2">

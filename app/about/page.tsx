@@ -38,7 +38,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       <BlogHeader />
-      <main className="container py-8">
+      <main className="container py-8 mx-auto">
         <div className="max-w-4xl mx-auto">
           {/* ヒーローセクション */}
           <section className="text-center mb-12">

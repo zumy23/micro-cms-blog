@@ -44,7 +44,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     return (
       <div className="min-h-screen bg-background">
         <BlogHeader />
-        <main className="container py-8">
+        <main className="container py-8 mx-auto">
           <Link href="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-8">
             <ArrowLeft className="mr-2 h-4 w-4" />
             記事一覧に戻る
