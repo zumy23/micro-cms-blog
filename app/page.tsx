@@ -9,15 +9,16 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 
 interface HomePageProps {
-  searchParams: {
+  searchParams: Promise<{
     page?: string
-  }
+  }>
 }
 
 const POSTS_PER_PAGE = 6
 
 export default async function HomePage({ searchParams }: HomePageProps) {
-  const currentPage = Number(searchParams.page) || 1
+  const params = await searchParams
+  const currentPage = Number(params.page) || 1
   const offset = (currentPage - 1) * POSTS_PER_PAGE
 
   try {
