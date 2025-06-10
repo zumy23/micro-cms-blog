@@ -1,5 +1,3 @@
-"use client"
-
 export interface BlogPost {
   id: string
   title: string
@@ -177,6 +175,8 @@ export async function getBlogs(queries?: {
 
   try {
     const searchParams = new URLSearchParams()
+
+    console.log("test");
 
     if (queries?.offset) searchParams.set("offset", queries.offset.toString())
     if (queries?.limit) searchParams.set("limit", queries.limit.toString())
