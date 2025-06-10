@@ -19,32 +19,33 @@ export function MarkdownContent({ content, className = "" }: MarkdownContentProp
   const isDark = resolvedTheme === "dark"
 
   return (
-    <ReactMarkdown
-      className={`prose prose-lg max-w-none dark:prose-invert ${className}`}
-      remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeRaw]}
-      components={{
-        code({ node, inline, className, children, ...props }) {
-          const match = /language-(\w+)/.exec(className || "")
-          return !inline && match ? (
-            <SyntaxHighlighter style={isDark ? vscDarkPlus : vs} language={match[1]} PreTag="div" {...props}>
-              {String(children).replace(/\n$/, "")}
-            </SyntaxHighlighter>
-          ) : (
-            <code className={className} {...props}>
-              {children}
-            </code>
-          )
-        },
-        img({ src, alt }) {
-          if (!src) return null
-          return (
-            <div className="relative w-full aspect-video my-8">
-              <Image src={src || "/placeholder.svg"} alt={alt || ""} fill className="object-cover rounded-lg" />
-            </div>
-          )
-        },
-        a({ href, children }) {
+    <div className={`prose prose-lg max-w-none dark:prose-invert ${className}`}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
+        components={{
+          code({ node, inline, className, children, ...props }: any) {
+            const match = /language-(\w+)/.exec(className || "")
+            return !inline && match ? (
+              <SyntaxHighlighter style={isDark ? vscDarkPlus : vs} language={match[1]} PreTag="div" {...props}>
+                {String(children).replace(/\n$/, "")}
+              </SyntaxHighlighter>
+            ) : (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            )
+          },
+          img({ src, alt }: any) {
+            if (!src) return null
+            const imageSrc = typeof src === 'string' ? src : "/placeholder.svg"
+            return (
+              <div className="relative w-full aspect-video my-8">
+                <Image src={imageSrc} alt={alt || ""} fill className="object-cover rounded-lg" />
+              </div>
+            )
+          },
+        a({ href, children }: any) {
           if (!href) return null
           const isInternal = href.startsWith("/")
 
@@ -62,7 +63,7 @@ export function MarkdownContent({ content, className = "" }: MarkdownContentProp
             </a>
           )
         },
-        h2({ children }) {
+        h2({ children }: any) {
           const id = children?.toString().toLowerCase().replace(/\s+/g, "-")
           return (
             <h2 id={id} className="scroll-mt-20">
@@ -70,7 +71,7 @@ export function MarkdownContent({ content, className = "" }: MarkdownContentProp
             </h2>
           )
         },
-        h3({ children }) {
+        h3({ children }: any) {
           const id = children?.toString().toLowerCase().replace(/\s+/g, "-")
           return (
             <h3 id={id} className="scroll-mt-20">
@@ -78,9 +79,10 @@ export function MarkdownContent({ content, className = "" }: MarkdownContentProp
             </h3>
           )
         },
-      }}
-    >
-      {content}
-    </ReactMarkdown>
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </div>
   )
 }
