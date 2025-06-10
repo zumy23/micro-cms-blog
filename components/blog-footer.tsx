@@ -143,7 +143,7 @@ export function BlogFooter() {
               <Heart className="h-3 w-3 text-red-500" />
               <span>by</span>
               <Link href="/about" className="hover:text-primary transition-colors">
-                山田太郎
+                {process.env.NEXT_PUBLIC_AUTHOR_NAME || "名無し"}
               </Link>
             </div>
           </div>

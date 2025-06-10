@@ -35,7 +35,7 @@ export function ProfileCard() {
               className="rounded-full object-cover border-2 border-primary/10"
             />
           </div>
-          <h3 className="font-bold text-lg mb-2">山田 太郎</h3>
+          <h3 className="font-bold text-lg mb-2">{process.env.NEXT_PUBLIC_AUTHOR_NAME || "名無し"}</h3>
           <p className="text-sm text-muted-foreground mb-4">フロントエンドエンジニア</p>
         </div>
       </CardHeader>

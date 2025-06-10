@@ -50,7 +50,7 @@ export default function AboutPage() {
                 className="rounded-full object-cover border-4 border-primary/10"
               />
             </div>
-            <h1 className="text-4xl font-bold mb-4">山田 太郎</h1>
+            <h1 className="text-4xl font-bold mb-4">{process.env.NEXT_PUBLIC_AUTHOR_NAME || "名無し"}</h1>
             <p className="text-xl text-muted-foreground mb-6">フロントエンドエンジニア & ブロガー</p>
             <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground mb-6">
               <div className="flex items-center gap-1">
@@ -95,7 +95,7 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent className="prose prose-lg max-w-none dark:prose-invert">
                 <p>
-                  こんにちは！フロントエンドエンジニアの山田太郎です。
+                  こんにちは！フロントエンドエンジニアの{process.env.NEXT_PUBLIC_AUTHOR_NAME || "名無し"}です。
                   Web開発に情熱を注いでおり、特にReactとNext.jsを使った
                   モダンなWebアプリケーション開発を得意としています。
                 </p>

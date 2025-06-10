@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "技術、デザイン、ライフスタイルについて書いているブログです。日々の学びや発見を共有しています。",
   generator: "v0.dev",
   keywords: ["ブログ", "技術", "デザイン", "ライフスタイル", "Next.js", "microCMS"],
-  authors: [{ name: "山田太郎" }],
+  authors: [{ name: process.env.NEXT_PUBLIC_AUTHOR_NAME || "名無し" }],
   openGraph: {
     title: `${process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"} - ${process.env.NEXT_PUBLIC_SITE_DESCRIPTION || "技術とライフスタイルのブログ"}`,
     description: "技術、デザイン、ライフスタイルについて書いているブログです。",
