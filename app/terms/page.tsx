@@ -2,8 +2,8 @@ import { BlogHeader } from "@/components/blog-header"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export const metadata = {
-  title: "利用規約 - My Blog",
-  description: "My Blogの利用規約について説明しています。",
+  title: `利用規約 - ${process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"}`,
+  description: `${process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"}の利用規約について説明しています。`,
 }
 
 export default function TermsPage() {

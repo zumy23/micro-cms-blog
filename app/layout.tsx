@@ -6,20 +6,20 @@ import { BlogFooter } from "@/components/blog-footer"
 import { GoogleAdSense } from "@/components/google-adsense"
 
 export const metadata: Metadata = {
-  title: "My Blog - 技術とライフスタイルのブログ",
+  title: `${process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"} - 技術とライフスタイルのブログ`,
   description: "技術、デザイン、ライフスタイルについて書いているブログです。日々の学びや発見を共有しています。",
   generator: "v0.dev",
   keywords: ["ブログ", "技術", "デザイン", "ライフスタイル", "Next.js", "microCMS"],
   authors: [{ name: "山田太郎" }],
   openGraph: {
-    title: "My Blog - 技術とライフスタイルのブログ",
+    title: `${process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"} - 技術とライフスタイルのブログ`,
     description: "技術、デザイン、ライフスタイルについて書いているブログです。",
     type: "website",
     locale: "ja_JP",
   },
   twitter: {
     card: "summary_large_image",
-    title: "My Blog - 技術とライフスタイルのブログ",
+    title: `${process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"} - 技術とライフスタイルのブログ`,
     description: "技術、デザイン、ライフスタイルについて書いているブログです。",
   },
 }

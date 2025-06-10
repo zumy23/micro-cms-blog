@@ -2,8 +2,8 @@ import { BlogHeader } from "@/components/blog-header"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export const metadata = {
-  title: "プライバシーポリシー - My Blog",
-  description: "My Blogのプライバシーポリシーについて説明しています。",
+  title: `プライバシーポリシー - ${process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"}`,
+  description: `${process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"}のプライバシーポリシーについて説明しています。`,
 }
 
 export default function PrivacyPage() {

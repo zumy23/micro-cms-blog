@@ -53,7 +53,7 @@ export function BlogFooter() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-4">
               <BookOpen className="h-6 w-6" />
-              <span className="font-bold text-xl">My Blog</span>
+              <span className="font-bold text-xl">{process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"}</span>
             </Link>
             <p className="text-muted-foreground mb-4 max-w-md">
               技術、デザイン、ライフスタイルについて書いているブログです。
@@ -129,7 +129,7 @@ export function BlogFooter() {
         {/* 下部情報 */}
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-            <span>&copy; {currentYear} My Blog. All rights reserved.</span>
+            <span>&copy; {currentYear} {process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"}. All rights reserved.</span>
           </div>
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <Link href="/privacy" className="hover:text-primary transition-colors">
