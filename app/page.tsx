@@ -68,7 +68,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           <div className="mb-8">
             <h1 className="text-4xl font-bold mb-4">最新の記事</h1>
             <p className="text-muted-foreground">
-              技術やライフスタイルについて書いています
+              {process.env.NEXT_PUBLIC_SITE_DESCRIPTION || "技術やライフスタイルについて書いています"}
               {totalCount > 0 && (
                 <span className="ml-2 text-sm">
                   （全{totalCount}件中 {offset + 1}-{Math.min(offset + POSTS_PER_PAGE, totalCount)}件を表示）

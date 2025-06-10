@@ -56,7 +56,7 @@ export function BlogFooter() {
               <span className="font-bold text-xl">{process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"}</span>
             </Link>
             <p className="text-muted-foreground mb-4 max-w-md">
-              技術、デザイン、ライフスタイルについて書いているブログです。
+              {process.env.NEXT_PUBLIC_SITE_DESCRIPTION || "技術、デザイン、ライフスタイルについて書いているブログです。"}
               日々の学びや発見を共有し、読者の皆様にとって有益な情報をお届けします。
             </p>
             <div className="flex space-x-2">
