@@ -62,7 +62,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           <article className="max-w-4xl mx-auto">
             {/* 記事上部の広告 */}
             <div className="mb-8">
-              <AdBanner adSlot="1111111111" adFormat="horizontal" className="w-full" />
+              {/* <AdBanner adSlot="1111111111" adFormat="horizontal" className="w-full" /> */}
             </div>
 
             {post.eyecatch ? (
@@ -85,7 +85,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
             {/* 記事下部の広告 */}
             <div className="mt-12 mb-8">
-              <AdBanner adSlot="2222222222" adFormat="horizontal" className="w-full" />
+              {/* <AdBanner adSlot="2222222222" adFormat="horizontal" className="w-full" /> */}
             </div>
           </article>
         </main>

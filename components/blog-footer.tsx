@@ -42,7 +42,7 @@ export function BlogFooter() {
     <footer className="bg-muted/30 border-t mt-16">
       {/* フッター上部の広告 */}
       <div className="container py-8">
-        <AdBanner adSlot="3333333333" adFormat="horizontal" className="w-full max-w-4xl mx-auto" />
+        {/* <AdBanner adSlot="3333333333" adFormat="horizontal" className="w-full max-w-4xl mx-auto" /> */}
       </div>
 
       <Separator />

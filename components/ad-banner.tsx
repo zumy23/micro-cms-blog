@@ -15,8 +15,12 @@ export function AdBanner({ adSlot, adFormat = "auto", fullWidthResponsive = true
   useEffect(() => {
     if (adSenseId && typeof window !== "undefined") {
       try {
+        const script = document.querySelector('script[src*="adsbygoogle"]')
         // @ts-ignore
-        ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+        if (script && window.adsbygoogle) {
+          // @ts-ignore
+          ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+        }
       } catch (error) {
         console.error("AdSense error:", error)
       }

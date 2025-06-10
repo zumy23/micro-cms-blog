@@ -87,7 +87,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                         {/* 3記事ごとに広告を表示 */}
                         {(index + 1) % 3 === 0 && index < posts.length - 1 && (
                           <div className="col-span-full mt-6 mb-6">
-                            <AdBanner adSlot="1234567890" adFormat="horizontal" className="max-w-full" />
+                            {/* <AdBanner adSlot="1234567890" adFormat="horizontal" className="max-w-full" /> */}
                           </div>
                         )}
                       </div>
@@ -108,7 +108,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                 <ProfileCard />
 
                 {/* サイドバー広告 */}
-                <AdBanner adSlot="0987654321" adFormat="vertical" className="min-h-[250px]" />
+                {/* <AdBanner adSlot="0987654321" adFormat="vertical" className="min-h-[250px]" /> */}
 
                 <CategoryList categories={categories} />
               </div>
