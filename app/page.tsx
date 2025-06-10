@@ -8,6 +8,8 @@ import { Pagination } from "@/components/pagination"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 
+export const runtime = 'edge'
+
 interface HomePageProps {
   searchParams: Promise<{
     page?: string

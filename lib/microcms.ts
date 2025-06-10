@@ -176,8 +176,6 @@ export async function getBlogs(queries?: {
   try {
     const searchParams = new URLSearchParams()
 
-    console.log("test");
-
     if (queries?.offset) searchParams.set("offset", queries.offset.toString())
     if (queries?.limit) searchParams.set("limit", queries.limit.toString())
     if (queries?.orders) searchParams.set("orders", queries.orders)

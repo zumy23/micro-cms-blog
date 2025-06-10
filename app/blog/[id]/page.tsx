@@ -10,27 +10,18 @@ import { notFound } from "next/navigation"
 import { TitlePlaceholder } from "@/components/title-placeholder"
 import { MarkdownContent } from "@/components/markdown-content"
 
-interface BlogDetailPageProps {
-  params: {
-    id: string
-  }
-}
+export const runtime = 'edge'
 
-export async function generateStaticParams() {
-  try {
-    const { contents } = await getBlogs({ limit: 100 })
-    return contents.map((post) => ({
-      id: post.id,
-    }))
-  } catch (error) {
-    console.error("Failed to generate static params:", error)
-    return []
-  }
+interface BlogDetailPageProps {
+  params: Promise<{
+    id: string
+  }>
 }
 
 export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   try {
-    const post = await getBlogDetail(params.id)
+    const resolvedParams = await params
+    const post = await getBlogDetail(resolvedParams.id)
     const isUsingMockData = !process.env.MICROCMS_API_KEY || !process.env.MICROCMS_SERVICE_DOMAIN
 
     const formatDate = (dateString: string) => {

@@ -9,32 +9,24 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
 import { notFound } from "next/navigation"
 
+export const runtime = 'edge'
+
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
-  searchParams: {
+  }>
+  searchParams: Promise<{
     page?: string
-  }
+  }>
 }
 
 const POSTS_PER_PAGE = 6
 
-export async function generateStaticParams() {
-  try {
-    const { contents } = await getCategories()
-    return contents.map((category) => ({
-      id: category.id,
-    }))
-  } catch (error) {
-    console.error("Failed to generate static params for categories:", error)
-    return []
-  }
-}
-
 export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
-  const categoryId = params.id
-  const currentPage = Number(searchParams.page) || 1
+  const resolvedParams = await params
+  const resolvedSearchParams = await searchParams
+  const categoryId = resolvedParams.id
+  const currentPage = Number(resolvedSearchParams.page) || 1
   const offset = (currentPage - 1) * POSTS_PER_PAGE
 
   try {
