@@ -1,0 +1,5 @@
+// 以下のパッケージをインストールする必要があります：
+// - react-markdown
+// - remark-gfm
+// - rehype-raw
+// - react-syntax-highlighter
