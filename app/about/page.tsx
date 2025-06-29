@@ -141,29 +141,6 @@ export default function AboutPage() {
             </Card>
           </section>
 
-          {/* 経歴セクション */}
-          <section className="mb-12">
-            <Card>
-              <CardHeader>
-                <CardTitle>経歴</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
-                  {experiences.map((exp, index) => (
-                    <div key={index} className="border-l-2 border-primary/20 pl-4">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                        <h3 className="font-semibold text-lg">{exp.title}</h3>
-                        <span className="text-sm text-muted-foreground">{exp.period}</span>
-                      </div>
-                      <p className="text-primary font-medium mb-2">{exp.company}</p>
-                      <p className="text-muted-foreground">{exp.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </section>
-
           {/* ブログについてセクション */}
           <section className="mb-12">
             <Card>
