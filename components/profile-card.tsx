@@ -29,7 +29,10 @@ export function ProfileCard() {
         <div className="flex flex-col items-center text-center">
           <div className="relative w-20 h-20 mb-4">
             <Image
-              src="/placeholder.svg?height=80&width=80"
+              src={process.env.NEXT_PUBLIC_GITHUB_USERNAME ?
+                `https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}.png?size=80` :
+                "/placeholder.svg?height=80&width=80"
+              }
               alt="プロフィール画像"
               fill
               className="rounded-full object-cover border-2 border-primary/10"
