@@ -6,21 +6,21 @@ import { Github, Twitter, Mail, User } from "lucide-react"
 
 export function ProfileCard() {
   const socialLinks = [
-    {
-      href: "https://github.com",
+    ...(process.env.NEXT_PUBLIC_GITHUB_URL ? [{
+      href: process.env.NEXT_PUBLIC_GITHUB_URL,
       label: "GitHub",
       icon: Github,
-    },
-    {
-      href: "https://twitter.com",
+    }] : []),
+    ...(process.env.NEXT_PUBLIC_TWITTER_URL ? [{
+      href: process.env.NEXT_PUBLIC_TWITTER_URL,
       label: "Twitter",
       icon: Twitter,
-    },
-    {
-      href: "mailto:contact@example.com",
+    }] : []),
+    ...(process.env.NEXT_PUBLIC_AUTHOR_EMAIL ? [{
+      href: `mailto:${process.env.NEXT_PUBLIC_AUTHOR_EMAIL}`,
       label: "Email",
       icon: Mail,
-    },
+    }] : []),
   ]
 
   return (

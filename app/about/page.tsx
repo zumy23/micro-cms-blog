@@ -69,24 +69,30 @@ export default function AboutPage() {
               )}
             </div>
             <div className="flex justify-center gap-4">
-              <Button variant="outline" size="sm" asChild>
-                <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4 mr-2" />
-                  GitHub
-                </Link>
-              </Button>
-              <Button variant="outline" size="sm" asChild>
-                <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                  <Twitter className="h-4 w-4 mr-2" />
-                  Twitter
-                </Link>
-              </Button>
-              <Button variant="outline" size="sm" asChild>
-                <Link href="mailto:contact@example.com">
-                  <Mail className="h-4 w-4 mr-2" />
-                  Contact
-                </Link>
-              </Button>
+              {process.env.NEXT_PUBLIC_GITHUB_URL && (
+                <Button variant="outline" size="sm" asChild>
+                  <Link href={process.env.NEXT_PUBLIC_GITHUB_URL} target="_blank" rel="noopener noreferrer">
+                    <Github className="h-4 w-4 mr-2" />
+                    GitHub
+                  </Link>
+                </Button>
+              )}
+              {process.env.NEXT_PUBLIC_TWITTER_URL && (
+                <Button variant="outline" size="sm" asChild>
+                  <Link href={process.env.NEXT_PUBLIC_TWITTER_URL} target="_blank" rel="noopener noreferrer">
+                    <Twitter className="h-4 w-4 mr-2" />
+                    Twitter
+                  </Link>
+                </Button>
+              )}
+              {process.env.NEXT_PUBLIC_AUTHOR_EMAIL && (
+                <Button variant="outline" size="sm" asChild>
+                  <Link href={`mailto:${process.env.NEXT_PUBLIC_AUTHOR_EMAIL}`}>
+                    <Mail className="h-4 w-4 mr-2" />
+                    Contact
+                  </Link>
+                </Button>
+              )}
             </div>
           </section>
 
@@ -193,18 +199,22 @@ export default function AboutPage() {
                   記事に関するご質問や、お仕事のご相談など、 お気軽にお問い合わせください。
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild>
-                    <Link href="mailto:contact@example.com">
-                      <Mail className="h-4 w-4 mr-2" />
-                      メールで連絡
-                    </Link>
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                      <Twitter className="h-4 w-4 mr-2" />
-                      TwitterでDM
-                    </Link>
-                  </Button>
+                  {process.env.NEXT_PUBLIC_AUTHOR_EMAIL && (
+                    <Button asChild>
+                      <Link href={`mailto:${process.env.NEXT_PUBLIC_AUTHOR_EMAIL}`}>
+                        <Mail className="h-4 w-4 mr-2" />
+                        メールで連絡
+                      </Link>
+                    </Button>
+                  )}
+                  {process.env.NEXT_PUBLIC_TWITTER_URL && (
+                    <Button variant="outline" asChild>
+                      <Link href={process.env.NEXT_PUBLIC_TWITTER_URL} target="_blank" rel="noopener noreferrer">
+                        <Twitter className="h-4 w-4 mr-2" />
+                        TwitterでDM
+                      </Link>
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
