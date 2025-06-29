@@ -61,6 +61,7 @@ export function BlogFooter() {
             </p>
             <div className="flex space-x-2">
               {socialLinks.map((social) => {
+                if (!social) return null
                 const Icon = social.icon
                 return (
                   <Button key={social.label} variant="outline" size="icon" asChild>
