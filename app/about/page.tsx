@@ -44,7 +44,10 @@ export default function AboutPage() {
           <section className="text-center mb-12">
             <div className="relative w-32 h-32 mx-auto mb-6">
               <Image
-                src="/placeholder.svg?height=128&width=128"
+                src={process.env.NEXT_PUBLIC_GITHUB_USERNAME ?
+                  `https://github.com/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}.png?size=128` :
+                  "/placeholder.svg?height=128&width=128"
+                }
                 alt="プロフィール画像"
                 fill
                 className="rounded-full object-cover border-4 border-primary/10"
