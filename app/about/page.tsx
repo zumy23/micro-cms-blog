@@ -61,10 +61,12 @@ export default function AboutPage() {
                   <span>{process.env.NEXT_PUBLIC_AUTHOR_LOCATION}</span>
                 </div>
               )}
-              <div className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
-                <span>ブログ開始: 2023年</span>
-              </div>
+              {process.env.NEXT_PUBLIC_BLOG_START_YEAR && (
+                <div className="flex items-center gap-1">
+                  <Calendar className="h-4 w-4" />
+                  <span>ブログ開始: {process.env.NEXT_PUBLIC_BLOG_START_YEAR}</span>
+                </div>
+              )}
             </div>
             <div className="flex justify-center gap-4">
               <Button variant="outline" size="sm" asChild>
