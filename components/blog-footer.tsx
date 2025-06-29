@@ -132,12 +132,16 @@ export function BlogFooter() {
             <span>&copy; {currentYear} {process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"}. All rights reserved.</span>
           </div>
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-            <Link href="/privacy" className="hover:text-primary transition-colors">
-              プライバシーポリシー
-            </Link>
-            <Link href="/terms" className="hover:text-primary transition-colors">
-              利用規約
-            </Link>
+            {process.env.NEXT_PUBLIC_SHOW_PRIVACY_POLICY === 'true' && (
+              <Link href="/privacy" className="hover:text-primary transition-colors">
+                プライバシーポリシー
+              </Link>
+            )}
+            {process.env.NEXT_PUBLIC_SHOW_TERMS_OF_SERVICE === 'true' && (
+              <Link href="/terms" className="hover:text-primary transition-colors">
+                利用規約
+              </Link>
+            )}
             <div className="flex items-center space-x-1">
               <span>Made with</span>
               <Heart className="h-3 w-3 text-red-500" />

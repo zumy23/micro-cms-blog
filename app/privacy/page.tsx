@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation"
 import { BlogHeader } from "@/components/blog-header"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
@@ -7,6 +8,11 @@ export const metadata = {
 }
 
 export default function PrivacyPage() {
+  // 環境変数でプライバシーポリシーの表示が無効化されている場合は404を返す
+  if (process.env.NEXT_PUBLIC_SHOW_PRIVACY_POLICY !== 'true') {
+    notFound()
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <BlogHeader />
