@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { Feed } from 'feed'
 import { getBlogs } from '@/lib/microcms'
 
+export const runtime = 'edge'
+
 export async function GET() {
   try {
     const blogs = await getBlogs({ limit: 50 })
