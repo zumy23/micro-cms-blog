@@ -55,10 +55,12 @@ export default function AboutPage() {
               <p className="text-xl text-muted-foreground mb-6">{process.env.NEXT_PUBLIC_AUTHOR_TITLE} & ブロガー</p>
             )}
             <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground mb-6">
-              <div className="flex items-center gap-1">
-                <MapPin className="h-4 w-4" />
-                <span>東京, 日本</span>
-              </div>
+              {process.env.NEXT_PUBLIC_AUTHOR_LOCATION && (
+                <div className="flex items-center gap-1">
+                  <MapPin className="h-4 w-4" />
+                  <span>{process.env.NEXT_PUBLIC_AUTHOR_LOCATION}</span>
+                </div>
+              )}
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
                 <span>ブログ開始: 2023年</span>
