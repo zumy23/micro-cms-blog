@@ -16,18 +16,18 @@ export function BlogFooter() {
   ]
 
   const socialLinks = [
-    {
-      href: "https://github.com",
+    process.env.NEXT_PUBLIC_GITHUB_URL && {
+      href: process.env.NEXT_PUBLIC_GITHUB_URL,
       label: "GitHub",
       icon: Github,
     },
-    {
-      href: "https://twitter.com",
+    process.env.NEXT_PUBLIC_TWITTER_URL && {
+      href: process.env.NEXT_PUBLIC_TWITTER_URL,
       label: "Twitter",
       icon: Twitter,
     },
-    {
-      href: "mailto:contact@example.com",
+    process.env.NEXT_PUBLIC_AUTHOR_EMAIL && {
+      href: `mailto:${process.env.NEXT_PUBLIC_AUTHOR_EMAIL}`,
       label: "Email",
       icon: Mail,
     },
@@ -36,7 +36,7 @@ export function BlogFooter() {
       label: "RSS",
       icon: Rss,
     },
-  ]
+  ].filter(Boolean)
 
   return (
     <footer className="bg-muted/30 border-t mt-16">
