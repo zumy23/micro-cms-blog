@@ -18,19 +18,23 @@ export function BlogCard({ post }: BlogCardProps) {
     })
   }
 
-  // Markdownからプレーンテキストを抽出する関数
-  const extractPlainText = (markdown: string) => {
-    // 見出し、リンク、画像、コードブロック、太字、斜体などを削除
-    return markdown
+  // MarkdownとHTMLからプレーンテキストを抽出する関数
+  const extractPlainText = (content: string) => {
+    // HTMLタグを削除
+    let plainText = content.replace(/<[^>]*>/g, "")
+    
+    // Markdownの記法を削除
+    return plainText
       .replace(/#+\s+/g, "") // 見出し
-      .replace(/\[([^\]]+)\]$$[^)]+$$/g, "$1") // リンク
-      .replace(/!\[([^\]]+)\]$$[^)]+$$/g, "") // 画像
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // リンク
+      .replace(/!\[([^\]]*)\]\([^)]+\)/g, "") // 画像
       .replace(/`{1,3}[^`]*`{1,3}/g, "") // インラインコードとコードブロック
       .replace(/\*\*([^*]+)\*\*/g, "$1") // 太字
       .replace(/\*([^*]+)\*/g, "$1") // 斜体
       .replace(/~~([^~]+)~~/g, "$1") // 取り消し線
       .replace(/>\s+/g, "") // 引用
       .replace(/\n/g, " ") // 改行を空白に
+      .replace(/\s+/g, " ") // 連続する空白を一つに
       .trim()
   }
 
