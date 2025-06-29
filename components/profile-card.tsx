@@ -36,13 +36,17 @@ export function ProfileCard() {
             />
           </div>
           <h3 className="font-bold text-lg mb-2">{process.env.NEXT_PUBLIC_AUTHOR_NAME || "名無し"}</h3>
-          <p className="text-sm text-muted-foreground mb-4">フロントエンドエンジニア</p>
+          {process.env.NEXT_PUBLIC_AUTHOR_TITLE && (
+            <p className="text-sm text-muted-foreground mb-4">{process.env.NEXT_PUBLIC_AUTHOR_TITLE}</p>
+          )}
         </div>
       </CardHeader>
       <CardContent className="pt-0">
-        <p className="text-sm text-muted-foreground text-center mb-4 leading-relaxed">
-          Web開発に情熱を注いでいます。React、Next.jsを中心とした技術情報や日々の学びを発信しています。
-        </p>
+        {process.env.NEXT_PUBLIC_AUTHOR_DESCRIPTION && (
+          <p className="text-sm text-muted-foreground text-center mb-4 leading-relaxed">
+            {process.env.NEXT_PUBLIC_AUTHOR_DESCRIPTION}
+          </p>
+        )}
 
         {/* SNSリンク */}
         <div className="flex justify-center gap-2 mb-4">
