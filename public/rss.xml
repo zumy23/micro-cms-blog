@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- このファイルは /api/rss にリダイレクトします -->
+<rss version="2.0">
+  <channel>
+    <title>Redirect</title>
+    <description>このRSSフィードは /api/rss に移動しました</description>
+    <link>/api/rss</link>
+  </channel>
+</rss>

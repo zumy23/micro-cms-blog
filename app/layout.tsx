@@ -32,6 +32,25 @@ export default function RootLayout({
   return (
     <html lang="ja" suppressHydrationWarning>
       <head>
+        {/* RSS フィード */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"} RSS Feed`}
+          href="/api/rss"
+        />
+        <link
+          rel="alternate"
+          type="application/feed+json"
+          title={`${process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"} JSON Feed`}
+          href="/api/rss.json"
+        />
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          title={`${process.env.NEXT_PUBLIC_BLOG_TITLE || "My Blog"} Atom Feed`}
+          href="/api/rss.atom"
+        />
         {/* <GoogleAdSense /> */}
       </head>
       <body className="min-h-screen flex flex-col mx-auto max-w-none">

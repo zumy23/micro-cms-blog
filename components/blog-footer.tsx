@@ -32,7 +32,7 @@ export function BlogFooter() {
       icon: Mail,
     },
     {
-      href: "/rss.xml",
+      href: "/api/rss",
       label: "RSS",
       icon: Rss,
     },
