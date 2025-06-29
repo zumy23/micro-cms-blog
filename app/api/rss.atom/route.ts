@@ -1,8 +1,27 @@
 import { NextResponse } from 'next/server'
-import { Feed } from 'feed'
 import { getBlogs } from '@/lib/microcms'
 
 export const runtime = 'edge'
+
+function escapeXml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;")
+}
+
+function cleanContent(content: string): string {
+  return content
+    .replace(/#{1,6}\s+/g, '') // Markdownのヘッダーを削除
+    .replace(/```[\s\S]*?```/g, '') // コードブロックを削除
+    .replace(/`[^`]*`/g, '') // インラインコードを削除
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // リンクをテキストのみに
+    .replace(/\n\s*\n/g, ' ') // 改行を削除
+    .trim()
+    .substring(0, 200) + '...'
+}
 
 export async function GET() {
   try {
@@ -12,56 +31,45 @@ export async function GET() {
     const blogTitle = process.env.NEXT_PUBLIC_BLOG_TITLE || 'My Blog'
     const siteDescription = process.env.NEXT_PUBLIC_SITE_DESCRIPTION || 'ブログの説明'
     const authorName = process.env.NEXT_PUBLIC_AUTHOR_NAME || '名無し'
-    const authorEmail = process.env.NEXT_PUBLIC_AUTHOR_EMAIL || ''
+    const currentDate = new Date().toISOString()
 
-    const feed = new Feed({
-      title: blogTitle,
-      description: siteDescription,
-      id: siteUrl,
-      link: siteUrl,
-      language: 'ja',
-      image: `${siteUrl}/placeholder-logo.png`,
-      favicon: `${siteUrl}/favicon.ico`,
-      copyright: `© ${new Date().getFullYear()} ${blogTitle}. All rights reserved.`,
-      generator: 'Next.js',
-      feedLinks: {
-        rss2: `${siteUrl}/api/rss`,
-        json: `${siteUrl}/api/rss.json`,
-        atom: `${siteUrl}/api/rss.atom`,
-      },
-      author: {
-        name: authorName,
-        email: authorEmail,
-        link: siteUrl,
-      },
-    })
+    const atomEntries = blogs.contents.map(blog => {
+      const summary = escapeXml(cleanContent(blog.content))
+      const title = escapeXml(blog.title)
+      const publishedDate = new Date(blog.publishedAt).toISOString()
+      const updatedDate = new Date(blog.revisedAt).toISOString()
+      
+      return `
+  <entry>
+    <title>${title}</title>
+    <link href="${siteUrl}/blog/${blog.id}" />
+    <id>${siteUrl}/blog/${blog.id}</id>
+    <published>${publishedDate}</published>
+    <updated>${updatedDate}</updated>
+    <summary>${summary}</summary>
+    <author>
+      <name>${escapeXml(authorName)}</name>
+    </author>
+    ${blog.category ? `<category term="${escapeXml(blog.category.id)}" label="${escapeXml(blog.category.name)}" />` : ''}
+  </entry>`
+    }).join('')
 
-    blogs.contents.forEach(blog => {
-      const description = blog.content
-        .replace(/#{1,6}\s+/g, '')
-        .replace(/```[\s\S]*?```/g, '')
-        .replace(/`[^`]*`/g, '')
-        .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
-        .replace(/\n\s*\n/g, ' ')
-        .trim()
-        .substring(0, 200) + '...'
+    const atomXml = `<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>${escapeXml(blogTitle)}</title>
+  <subtitle>${escapeXml(siteDescription)}</subtitle>
+  <link href="${siteUrl}" />
+  <link href="${siteUrl}/api/rss.atom" rel="self" />
+  <id>${siteUrl}</id>
+  <updated>${currentDate}</updated>
+  <author>
+    <name>${escapeXml(authorName)}</name>
+  </author>
+  <generator>Next.js</generator>
+  ${atomEntries}
+</feed>`
 
-      feed.addItem({
-        title: blog.title,
-        id: `${siteUrl}/blog/${blog.id}`,
-        link: `${siteUrl}/blog/${blog.id}`,
-        description: description,
-        content: blog.content,
-        date: new Date(blog.publishedAt),
-        category: blog.category ? [{
-          name: blog.category.name,
-          term: blog.category.id,
-        }] : [],
-        image: blog.eyecatch?.url || `${siteUrl}/placeholder.jpg`,
-      })
-    })
-
-    return new NextResponse(feed.atom1(), {
+    return new NextResponse(atomXml, {
       headers: {
         'Content-Type': 'application/atom+xml; charset=utf-8',
         'Cache-Control': 'public, max-age=3600',
